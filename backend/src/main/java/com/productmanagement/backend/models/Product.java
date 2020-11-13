@@ -1,15 +1,15 @@
 package com.productmanagement.backend.models;
 
 public class Product {
-    private int id;
+    private String id;
     private String name;
     private String description;
-    private int categoryId;
+    private String categoryId;
     private String creationDate;
     private String updateDate;
     private String lastPurchasedDate;
 
-    public Product(Integer id, String name, String description, Integer categoryId, String creationDate, String updateDate, String lastPurchasedDate) {
+    public Product(String id, String name, String description, String categoryId, String creationDate, String updateDate, String lastPurchasedDate) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -19,11 +19,11 @@ public class Product {
         this.lastPurchasedDate = lastPurchasedDate;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -43,11 +43,11 @@ public class Product {
         this.description = description;
     }
 
-    public Integer getCategoryId() {
+    public String getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(Integer categoryId) {
+    public void setCategoryId(String categoryId) {
         this.categoryId = categoryId;
     }
 

@@ -33,7 +33,9 @@ public class CategoryService {
             }
             System.out.println("Loaded categories");
         } catch (IOException e) {
-            logger.warning("Products not loaded");
+            logger.warning("Categories not loaded");
         }
     }
+
+    public List<Category> getAllCategories() { return categories; }
 }
