@@ -16,7 +16,7 @@ public class CategoryService {
 
     private static final Logger logger = Logger.getLogger(ProductService.class.getName());
 
-    private List<Category> categories = new ArrayList<>();
+    private final List<Category> categories = new ArrayList<>();
 
     @PostConstruct
     public void loadCategories() {
@@ -29,7 +29,7 @@ public class CategoryService {
 
             while ((line = reader.readLine()) != null) {
                 String[] values = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
-                categories.add(new Category(Integer.valueOf(values[0]), values[1]));
+                categories.add(new Category(values[0], values[1]));
             }
             System.out.println("Loaded categories");
         } catch (IOException e) {
