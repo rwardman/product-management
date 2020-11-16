@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`When displaying the sort component should be displayed correctly 1`] = `
+.c0 {
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  padding: 5px;
+  height: 50px;
+  margin-top: 10px;
+}
+
+.c1 {
+  padding: 5px;
+  height: 50px;
+  margin-left: 5px;
+  border-radius: 3px;
+  border: 1px solid #eee;
+}
+
+@media screen and (min-width:414px) {
+  .c0 {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+}
+
+<form
+  className="c0"
+>
+  <label>
+    Sort By:
+    <select
+      className="c1"
+      onChange={[Function]}
+      value="option1"
+    >
+      <option
+        value="option1"
+      >
+        option1
+      </option>
+      <option
+        value="option2"
+      >
+        option2
+      </option>
+    </select>
+  </label>
+</form>
+`;

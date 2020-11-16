@@ -51,4 +51,8 @@ ProductCard.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string,
   description: PropTypes.string,
+  category: PropTypes.string,
+  creationDate: PropTypes.string,
+  updateDate: PropTypes.string,
+  lastPurchasedDate: PropTypes.string,
 };

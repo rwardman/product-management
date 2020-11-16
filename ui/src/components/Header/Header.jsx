@@ -1,7 +1,6 @@
 import React from "react";
 
 import Logo from "../Icons/Logo";
-import SearchBar from "../SearchBar/SearchBar";
 
 import * as Styled from "./Header.styles.js";
 
@@ -11,7 +10,7 @@ const Header = () => {
       <Styled.LogoContainer>
         <Logo />
       </Styled.LogoContainer>
-      <SearchBar />
+      <h1>Product Management</h1>
     </Styled.Container>
   );
 };

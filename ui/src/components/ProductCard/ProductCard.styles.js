@@ -13,17 +13,14 @@ const Container = styled.div`
   margin-right: auto;
   margin-left: auto;
   margin-top: 10px;
-  width: 80%;
+  width: 45%;
   min-width: 300px;
   max-width: 600px;
-  /* border: 1px solid #d8d8d8; */
-  /* height: 150px; */
 `;
 
 const TopContainer = styled.div`
   display: flex;
-  /* height: 30px; */
-  background-color: #f0fbff;
+  background-color: #eeedff;
   justify-content: space-between;
   border-bottom: 1px solid #d8d8d8;
   padding: 10px;

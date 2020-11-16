@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
 
 import PropTypes from "prop-types";
+import * as Styled from "./SortBy.styles";
 
 const SortBy = ({ options, sortBy }) => {
   const [chosenOption, setChosenOption] = useState(options[0]);
 
   useEffect(() => {
     sortBy(chosenOption);
-  }, [chosenOption, sortBy]);
+  }, [sortBy, chosenOption]);
 
   return (
-    <form>
+    <Styled.Form>
       <label>
         Sort By:
-        <select
+        <Styled.Select
           value={chosenOption}
           onChange={(e) => setChosenOption(e.target.value)}
         >
@@ -22,9 +23,9 @@ const SortBy = ({ options, sortBy }) => {
               {option}
             </option>
           ))}
-        </select>
+        </Styled.Select>
       </label>
-    </form>
+    </Styled.Form>
   );
 };
 

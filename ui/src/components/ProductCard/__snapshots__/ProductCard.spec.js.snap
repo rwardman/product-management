@@ -1,0 +1,125 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The sort by component should be displayed correctly 1`] = `
+.c2 {
+  font-weight: bold;
+}
+
+.c3 {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.c0 {
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10px;
+  width: 45%;
+  min-width: 300px;
+  max-width: 600px;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #eeedff;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  border-bottom: 1px solid #d8d8d8;
+  padding: 10px;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.c5 {
+  padding-bottom: 10px;
+}
+
+.c6 {
+  padding-bottom: 5px;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <span
+      className="c2"
+    >
+      name
+    </span>
+    <div>
+      <span
+        className="c3"
+      >
+         Id: 
+      </span>
+      id
+    </div>
+  </div>
+  <div
+    className="c4"
+  >
+    <div
+      className="c5"
+    >
+      description
+    </div>
+    <div
+      className="c6"
+    >
+      <span
+        className="c3"
+      >
+        Category: 
+      </span>
+      category
+    </div>
+    <div
+      className="c6"
+    >
+      <span
+        className="c3"
+      >
+        Created: 
+      </span>
+      creation date
+    </div>
+    <div
+      className="c6"
+    >
+      <span
+        className="c3"
+      >
+        Updated: 
+      </span>
+      update date
+    </div>
+    <div
+      className="c6"
+    >
+      <span
+        className="c3"
+      >
+        Last Purchased: 
+      </span>
+      last purchased date
+    </div>
+  </div>
+</div>
+`;
