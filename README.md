@@ -5,13 +5,17 @@ This repository contains the backend and frontend of a product management applic
 ## Quick Start
 
 - Run the backend application, and it should be running at `localhost:8080`.
-- Run the front end application using `yarn start`, this will open the application at `localhost:3000`
+- Run the front end application using `yarn start` when inside the ui folder, this run the frontend and it should open the application at `localhost:3000`
 
 Open [http://localhost:3000](http://localhost:3000) to view the application.
 
 ## Frontend
 
-The frontend is written in JavaScript using the React Library. The frotend uses Axios to retreive data from the backend. This application runs most successfully in Chrome or Firefox.
+The frontend is written in JavaScript using the React Library. The frotend uses Axios to retreive data from the backend. The application is styled using styled components.
+
+This application runs most successfully in Chrome or Firefox.
+
+The design of the frontend is based on the principles of responsive, mobile first design.
 
 ## Backend
 
