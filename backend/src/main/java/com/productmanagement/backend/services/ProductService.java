@@ -15,7 +15,7 @@ public class ProductService {
 
     private static final Logger logger = Logger.getLogger(ProductService.class.getName());
 
-    private List<Product> products = new ArrayList<>();
+    private final List<Product> products = new ArrayList<>();
 
     @PostConstruct
     public void loadProducts() {
