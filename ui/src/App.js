@@ -70,17 +70,21 @@ function App() {
   }, [chosenOption]);
 
   useEffect(() => {
-    if (productData !== null) {
-      const result = productData.filter(({ categoryId }) =>
-        activeFilters.includes(categoryId)
-      );
-      if (result.length === 0 && activeFilters.length === 0) {
-        setFilteredProductData(productData);
-      } else {
-        setFilteredProductData(result);
+    const getData = async () => {
+      if (productData !== null) {
+        const data = [...productData];
+        const result = data.filter(({ categoryId }) =>
+          activeFilters.includes(categoryId)
+        );
+        if (result.length === 0 && activeFilters.length === 0) {
+          setFilteredProductData(data);
+        } else {
+          setFilteredProductData(result);
+        }
       }
-    }
-  }, [activeFilters]);
+    };
+    getData();
+  }, [activeFilters, productData]);
 
   const getCategoryName = (categoryId) => {
     const result = categories.find(({ id }) => id === categoryId);
