@@ -77,6 +77,6 @@ The frontend is written in JavaScript using the React Library. The frontend uses
 
 ### The Design
 
-The design of the frontend is based on the principles of responsive, mobile first design. Initial designs are s similar to the below.
+The design of the frontend is based on the principles of responsive, mobile first design. Initial designs are similar to the below.
 
 ![App Design](./AppDesign.png)
