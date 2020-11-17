@@ -22,5 +22,3 @@ const Logo = () => {
 };
 
 export default Logo;
-
-// #1c1970

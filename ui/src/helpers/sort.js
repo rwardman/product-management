@@ -1,10 +1,10 @@
-export const sortNumbers = (key) => {
+export const sortByNumber = (key) => {
   return function (a, b) {
     return a[key] - b[key];
   };
 };
 
-export const sortStrings = (key, order = "asc") => {
+export const sortByString = (key, order = "asc") => {
   return function compare(a, b) {
     var valueA = a[key].toUpperCase();
     var valueB = b[key].toUpperCase();
