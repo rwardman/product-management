@@ -1,4 +1,4 @@
-import { sortNumbers, sortStrings, sortBySize } from "./sort";
+import { sortByNumber, sortByString, sortBySize } from "./sort";
 
 const testObject = [
   { id: "1", name: "Wire 1m" },
@@ -40,30 +40,30 @@ const sortedBySize = [
   { id: "3", name: "5 Chest of drawers" },
 ];
 
-describe("The sortNumbers helper successfully sorts by number when a number key is passed to it", () => {
+describe("The sortNumbers comparator successfully sorts by number when a number key is passed to it", () => {
   it("sorts the object by the given key", () => {
-    expect(testObject.sort(sortNumbers("id"))).toStrictEqual(sortedById);
+    expect(testObject.sort(sortByNumber("id"))).toStrictEqual(sortedById);
   });
 });
 
-describe("The sortStrings helper successfully sorts by string", () => {
+describe("The sortStrings comparator successfully sorts by string", () => {
   describe("when no order parameter is passed", () => {
     it("should sort in ascending order", () => {
-      expect(testObject.sort(sortStrings("name"))).toStrictEqual(
+      expect(testObject.sort(sortByString("name"))).toStrictEqual(
         sortedByNameAscending
       );
     });
   });
   describe("when the desc order parameter is passed", () => {
     it("should in descending order", () => {
-      expect(testObject.sort(sortStrings("name", "desc"))).toStrictEqual(
+      expect(testObject.sort(sortByString("name", "desc"))).toStrictEqual(
         sortedByNameDescending
       );
     });
   });
 });
 
-describe("The sortBySize helper successfully sorts by size", () => {
+describe("The sortBySize comparator successfully sorts by size", () => {
   it("sorts the objects based on size", () => {
     expect(testObjectsWithSize.sort(sortBySize("id"))).toStrictEqual(
       sortedBySize

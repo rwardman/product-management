@@ -7,7 +7,7 @@ import SortBy from "./components/SortBy/SortBy";
 import FilterPanel from "./components/FilterPanel/FilterPanel";
 import NoResults from "./components/NoResults/NoResults";
 
-import { sortStrings, sortNumbers, sortBySize } from "./helpers/sort";
+import { sortByString, sortByNumber, sortBySize } from "./helpers/sort";
 
 import * as Styled from "./App.styles";
 
@@ -36,24 +36,29 @@ function App() {
       if (productData !== null) {
         switch (option) {
           case "Id":
-            setProductData([...productData].sort(sortNumbers("id")));
+            setProductData([...productData].sort(sortByNumber("id")));
             break;
+
           case "Name (Ascending)":
-            setProductData([...productData].sort(sortStrings("name")));
+            setProductData([...productData].sort(sortByString("name")));
             break;
+
           case "Name (Descending)":
-            setProductData([...productData].sort(sortStrings("name", "desc")));
+            setProductData([...productData].sort(sortByString("name", "desc")));
             break;
+
           case "Size":
             var productsWithSize = [...productData].filter((product) =>
               product.name.match(/(\d+)/g)
             );
             productsWithSize.sort(sortBySize("name"));
+
             var productsWithoutSize = [...productData]
               .filter((product) => !product.name.match(/(\d+)/g))
-              .sort(sortStrings("name"));
+              .sort(sortByString("name"));
             setProductData(productsWithSize.concat(productsWithoutSize));
             break;
+
           default:
             break;
         }
@@ -64,7 +69,7 @@ function App() {
   }, [chosenOption]);
 
   useEffect(() => {
-    const getData = async () => {
+    const getData = () => {
       if (productData !== null) {
         const data = [...productData];
         const result = data.filter(({ categoryId }) =>
