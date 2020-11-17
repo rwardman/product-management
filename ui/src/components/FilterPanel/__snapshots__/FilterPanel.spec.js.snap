@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`When displaying the filter panel component should be displayed correctly 1`] = `
+<form
+  className="sc-bdfBwQ icbxSF"
+>
+  <label
+    className="sc-gsTCUz qIFjy"
+  >
+    <span
+      className="sc-dlfnbm ipJTGa"
+    >
+      Filter
+    </span>
+    <label>
+      name1
+      <input
+        name="name1"
+        onClick={[Function]}
+        type="checkbox"
+      />
+    </label>
+    <label>
+      name2
+      <input
+        name="name2"
+        onClick={[Function]}
+        type="checkbox"
+      />
+    </label>
+  </label>
+</form>
+`;
