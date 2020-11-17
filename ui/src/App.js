@@ -5,6 +5,7 @@ import ProductCard from "./components/ProductCard/ProductCard";
 import Header from "./components/Header/Header";
 import SortBy from "./components/SortBy/SortBy";
 import FilterPanel from "./components/FilterPanel/FilterPanel";
+import NoResults from "./components/NoResults/NoResults";
 
 import { sortStrings, sortNumbers, sortBySize } from "./helpers/sort";
 
@@ -12,7 +13,7 @@ import * as Styled from "./App.styles";
 
 function App() {
   const [productData, setProductData] = useState(null);
-  const [filteredProductData, setFilteredProductData] = useState(null);
+  const [filteredProductData, setFilteredProductData] = useState([]);
   const [categories, setCategories] = useState(null);
   const [chosenOption, setChosenOption] = useState("Id");
   const [activeFilters, setActiveFilters] = useState([]);
@@ -37,33 +38,26 @@ function App() {
           case "Id":
             setProductData([...productData].sort(sortNumbers("id")));
             break;
-
           case "Name (Ascending)":
             setProductData([...productData].sort(sortStrings("name")));
             break;
-
           case "Name (Descending)":
             setProductData([...productData].sort(sortStrings("name", "desc")));
             break;
-
           case "Size":
             var productsWithSize = [...productData].filter((product) =>
               product.name.match(/(\d+)/g)
             );
             productsWithSize.sort(sortBySize("name"));
-
             var productsWithoutSize = [...productData]
               .filter((product) => !product.name.match(/(\d+)/g))
               .sort(sortStrings("name"));
-
             setProductData(productsWithSize.concat(productsWithoutSize));
             break;
-
           default:
             break;
         }
       }
-      localStorage.setItem("product_data", JSON.stringify(productData));
     };
 
     sortArray(chosenOption);
@@ -91,7 +85,7 @@ function App() {
     return result.name;
   };
 
-  const updateOption = (option) => {
+  const sortBy = (option) => {
     setChosenOption(option);
   };
 
@@ -101,20 +95,21 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <Header title={"Product Management"} />
       <Styled.MainContainer>
         <Styled.SortByContainer>
           {categories && (
             <>
               <FilterPanel categories={categories} filterOn={filterOn} />
-              <SortBy options={sortByOptions} sortBy={updateOption} />
+              <SortBy options={sortByOptions} sortBy={sortBy} />
             </>
           )}
         </Styled.SortByContainer>
 
         <Styled.ProductCardsContiner>
-          {filteredProductData &&
-            categories &&
+          {categories && filteredProductData.length === 0 ? (
+            <NoResults />
+          ) : (
             filteredProductData.map((product) => (
               <ProductCard
                 key={product.id}
@@ -126,7 +121,8 @@ function App() {
                 updateDate={product.updateDate}
                 lastPurchasedDate={product.lastPurchasedDate}
               />
-            ))}
+            ))
+          )}
         </Styled.ProductCardsContiner>
       </Styled.MainContainer>
     </div>

@@ -14,6 +14,7 @@ exports[`When displaying the sort component should be displayed correctly 1`] = 
   height: 50px;
   margin-left: 5px;
   border-radius: 3px;
+  background-color: #fff;
   border: 1px solid #eee;
 }
 

@@ -24,8 +24,5 @@ exports[`When displaying the header component should be displayed correctly 1`] 
       />
     </svg>
   </div>
-  <h1>
-    Product Management
-  </h1>
 </div>
 `;

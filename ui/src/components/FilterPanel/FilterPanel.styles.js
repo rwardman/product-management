@@ -11,4 +11,11 @@ const Label = styled.label`
   flex-direction: column;
 `;
 
-export { Form, Label };
+const FilterTitle = styled.span`
+  font-size: 16px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-weight: bold;
+`;
+
+export { Form, Label, FilterTitle };

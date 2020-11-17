@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 import * as Styled from "./FilterPanel.styles";
 
@@ -22,7 +23,7 @@ const FilterPanel = ({ categories, filterOn }) => {
   return (
     <Styled.Form>
       <Styled.Label>
-        <h4>Filter</h4>
+        <Styled.FilterTitle>Filter</Styled.FilterTitle>
         {categories.map((category) => (
           <label key={category.id}>
             {category.name}
@@ -39,3 +40,13 @@ const FilterPanel = ({ categories, filterOn }) => {
 };
 
 export default FilterPanel;
+
+FilterPanel.propTypes = {
+  filterOn: PropTypes.func.isRequired,
+  categories: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
