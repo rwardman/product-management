@@ -9,7 +9,7 @@ const options = ["option1", "option2"];
 describe("When displaying the sort component", () => {
   it("should be displayed correctly", () => {
     const tree = renderer
-      .create(<SortBy options={options} sortBy={jest.fn()} />)
+      .create(<SortBy options={options} sortBy={jest.fn()} chosenOption="3" />)
       .toJSON();
     expect(tree).toMatchSnapshot();
   });

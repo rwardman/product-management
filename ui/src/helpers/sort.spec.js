@@ -1,4 +1,4 @@
-import { sortByNumber, sortByString, sortBySize } from "./sort";
+import { sortData } from "./sort";
 
 const testObject = [
   { id: "1", name: "Wire 1m" },
@@ -7,11 +7,27 @@ const testObject = [
   { id: "3", name: "5 Chest of drawers" },
 ];
 
+const testObjectWithSize = [
+  { id: "1", name: "Wire 10m" },
+  { id: "2", name: "5 Chest of drawers" },
+  { id: "3", name: "Balloon" },
+  { id: "4", name: "3 Chest of drawers" },
+  { id: "5", name: "Desk" },
+  { id: "6", name: "Table" },
+];
+
 const sortedById = [
   { id: "1", name: "Wire 1m" },
   { id: "2", name: "3 Chest of drawers" },
   { id: "3", name: "5 Chest of drawers" },
   { id: "4", name: "A big bed" },
+];
+
+const sortedByIdDescending = [
+  { id: "4", name: "A big bed" },
+  { id: "3", name: "5 Chest of drawers" },
+  { id: "2", name: "3 Chest of drawers" },
+  { id: "1", name: "Wire 1m" },
 ];
 
 const sortedByNameAscending = [
@@ -28,45 +44,35 @@ const sortedByNameDescending = [
   { id: "2", name: "3 Chest of drawers" },
 ];
 
-const testObjectsWithSize = [
-  { id: "1", name: "Wire 10m" },
-  { id: "2", name: "3 Chest of drawers" },
-  { id: "3", name: "5 Chest of drawers" },
-];
-
 const sortedBySize = [
+  { id: "4", name: "3 Chest of drawers" },
+  { id: "2", name: "5 Chest of drawers" },
   { id: "1", name: "Wire 10m" },
-  { id: "2", name: "3 Chest of drawers" },
-  { id: "3", name: "5 Chest of drawers" },
+  { id: "3", name: "Balloon" },
+  { id: "5", name: "Desk" },
+  { id: "6", name: "Table" },
 ];
 
-describe("The sortNumbers comparator successfully sorts by number when a number key is passed to it", () => {
-  it("sorts the object by the given key", () => {
-    expect(testObject.sort(sortByNumber("id"))).toStrictEqual(sortedById);
+describe("sortData successfully sorts data", () => {
+  it("by Id (Ascending)", () => {
+    expect(sortData(testObject, "Id (Ascending)")).toStrictEqual(sortedById);
   });
-});
-
-describe("The sortStrings comparator successfully sorts by string", () => {
-  describe("when no order parameter is passed", () => {
-    it("should sort in ascending order", () => {
-      expect(testObject.sort(sortByString("name"))).toStrictEqual(
-        sortedByNameAscending
-      );
-    });
-  });
-  describe("when the desc order parameter is passed", () => {
-    it("should in descending order", () => {
-      expect(testObject.sort(sortByString("name", "desc"))).toStrictEqual(
-        sortedByNameDescending
-      );
-    });
-  });
-});
-
-describe("The sortBySize comparator successfully sorts by size", () => {
-  it("sorts the objects based on size", () => {
-    expect(testObjectsWithSize.sort(sortBySize("id"))).toStrictEqual(
-      sortedBySize
+  it("by Id (Descending)", () => {
+    expect(sortData(testObject, "Id (Descending)")).toStrictEqual(
+      sortedByIdDescending
     );
+  });
+  it("by Name (Ascending)", () => {
+    expect(sortData(testObject, "Name (Ascending)")).toStrictEqual(
+      sortedByNameAscending
+    );
+  });
+  it("by Name (Descending)", () => {
+    expect(sortData(testObject, "Name (Descending)")).toStrictEqual(
+      sortedByNameDescending
+    );
+  });
+  it("by Size", () => {
+    expect(sortData(testObjectWithSize, "Size")).toStrictEqual(sortedBySize);
   });
 });

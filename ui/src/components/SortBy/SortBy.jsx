@@ -3,12 +3,12 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import * as Styled from "./SortBy.styles";
 
-const SortBy = ({ options, sortBy }) => {
-  const [chosenOption, setChosenOption] = useState(options[0]);
+const SortBy = ({ options, sortBy, chosenOption }) => {
+  const [value, setValue] = useState(chosenOption);
 
   useEffect(() => {
-    sortBy(chosenOption);
-  }, [sortBy, chosenOption]);
+    sortBy(value);
+  }, [sortBy, value]);
 
   return (
     <Styled.Form>
@@ -16,7 +16,7 @@ const SortBy = ({ options, sortBy }) => {
         Sort By:
         <Styled.Select
           value={chosenOption}
-          onChange={(e) => setChosenOption(e.target.value)}
+          onChange={(e) => setValue(e.target.value)}
         >
           {options.map((option) => (
             <option value={option} key={option}>
@@ -34,4 +34,5 @@ export default SortBy;
 SortBy.propTypes = {
   options: PropTypes.array.isRequired,
   sortBy: PropTypes.func.isRequired,
+  chosenOption: PropTypes.string.isRequired,
 };

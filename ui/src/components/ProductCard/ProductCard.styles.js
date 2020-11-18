@@ -20,7 +20,7 @@ const Container = styled.div`
 
 const TopContainer = styled.div`
   display: flex;
-  background-color: #eeedff;
+  background-color: ${(props) => getProductCardColor(props.category)};
   justify-content: space-between;
   border-bottom: 1px solid #d8d8d8;
   padding: 10px;
@@ -48,4 +48,25 @@ export {
   BottomContainer,
   Paragraph,
   InfoContainer,
+};
+
+const getProductCardColor = (category) => {
+  switch (category) {
+    case "Kitchen":
+      return "#fffdd9";
+    case "Power Tools":
+      return "#ffe4d9";
+    case "Furniture":
+      return "#ffd9e9";
+    case "Electric":
+      return "#e3ffd9";
+    case "Washroom":
+      return "#d9e9ff";
+    case "Textiles":
+      return "#efffd9";
+    case "Misc.":
+      return "#e6d9ff";
+    default:
+      return "#eeedff";
+  }
 };

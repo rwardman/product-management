@@ -7,20 +7,43 @@ import SortBy from "./components/SortBy/SortBy";
 import FilterPanel from "./components/FilterPanel/FilterPanel";
 import NoResults from "./components/NoResults/NoResults";
 
-import { sortByString, sortByNumber, sortBySize } from "./helpers/sort";
+import { sortData } from "./helpers/sort";
 
 import * as Styled from "./App.styles";
 
 function App() {
-  const [productData, setProductData] = useState(null);
+  const [productData, setProductData] = useState(() =>
+    JSON.parse(localStorage.getItem("product_data"))
+  );
   const [filteredProductData, setFilteredProductData] = useState([]);
-  const [categories, setCategories] = useState(null);
-  const [chosenOption, setChosenOption] = useState("Id");
-  const [activeFilters, setActiveFilters] = useState([]);
 
-  const sortByOptions = ["Id", "Name (Ascending)", "Name (Descending)", "Size"];
+  const [categories, setCategories] = useState(() =>
+    JSON.parse(localStorage.getItem("categories"))
+  );
+
+  const [chosenOption, setChosenOption] = useState(() => {
+    const option = JSON.parse(localStorage.getItem("chosen_option"))
+      ? JSON.parse(localStorage.getItem("chosen_option"))
+      : "Id (Ascending)";
+    return option;
+  });
+  const [activeFilters, setActiveFilters] = useState(() => {
+    const option = JSON.parse(localStorage.getItem("active_filters"))
+      ? JSON.parse(localStorage.getItem("active_filters"))
+      : [];
+    return option;
+  });
+
+  const sortByOptions = [
+    "Id (Ascending)",
+    "Id (Descending)",
+    "Name (Ascending)",
+    "Name (Descending)",
+    "Size",
+  ];
 
   useEffect(() => {
+    console.log("rendre");
     if (productData === null && categories === null) {
       axios.all([axios.get("/products"), axios.get("/categories")]).then(
         axios.spread((...responses) => {
@@ -29,73 +52,40 @@ function App() {
         })
       );
     }
+
+    localStorage.setItem("categories", JSON.stringify(categories));
+    localStorage.setItem("product_data", JSON.stringify(productData));
   }, [productData, categories]);
 
   useEffect(() => {
-    const sortArray = (option) => {
-      if (productData !== null) {
-        switch (option) {
-          case "Id":
-            setProductData([...productData].sort(sortByNumber("id")));
-            break;
+    localStorage.setItem("chosen_option", JSON.stringify(chosenOption));
+    localStorage.setItem("active_filters", JSON.stringify(activeFilters));
 
-          case "Name (Ascending)":
-            setProductData([...productData].sort(sortByString("name")));
-            break;
+    if (productData != null) {
+      const sortedData = sortData([...productData], chosenOption);
 
-          case "Name (Descending)":
-            setProductData([...productData].sort(sortByString("name", "desc")));
-            break;
-
-          case "Size":
-            var productsWithSize = [...productData].filter((product) =>
-              product.name.match(/(\d+)/g)
-            );
-            productsWithSize.sort(sortBySize("name"));
-
-            var productsWithoutSize = [...productData]
-              .filter((product) => !product.name.match(/(\d+)/g))
-              .sort(sortByString("name"));
-            setProductData(productsWithSize.concat(productsWithoutSize));
-            break;
-
-          default:
-            break;
-        }
-      }
-    };
-
-    sortArray(chosenOption);
-  }, [chosenOption]);
-
-  useEffect(() => {
-    const getData = () => {
-      if (productData !== null) {
-        const data = [...productData];
-        const result = data.filter(({ categoryId }) =>
+      if (activeFilters.length === 0) {
+        setFilteredProductData(sortedData);
+      } else {
+        const filteredData = sortedData.filter(({ categoryId }) =>
           activeFilters.includes(categoryId)
         );
-        if (result.length === 0 && activeFilters.length === 0) {
-          setFilteredProductData(data);
-        } else {
-          setFilteredProductData(result);
-        }
+        setFilteredProductData(filteredData);
       }
-    };
-    getData();
-  }, [activeFilters, productData]);
+    }
+  }, [activeFilters, chosenOption, productData]);
 
   const getCategoryName = (categoryId) => {
     const result = categories.find(({ id }) => id === categoryId);
     return result.name;
   };
 
-  const sortBy = (option) => {
-    setChosenOption(option);
-  };
-
   const filterOn = (activeFilters) => {
     setActiveFilters(activeFilters);
+  };
+
+  const sortBy = (chosenOption) => {
+    setChosenOption(chosenOption);
   };
 
   return (
@@ -105,8 +95,16 @@ function App() {
         <Styled.SortByContainer>
           {categories && (
             <>
-              <FilterPanel categories={categories} filterOn={filterOn} />
-              <SortBy options={sortByOptions} sortBy={sortBy} />
+              <FilterPanel
+                categories={categories}
+                filterOn={filterOn}
+                activeFilters={activeFilters}
+              />
+              <SortBy
+                options={sortByOptions}
+                sortBy={sortBy}
+                chosenOption={chosenOption}
+              />
             </>
           )}
         </Styled.SortByContainer>
