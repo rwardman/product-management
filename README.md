@@ -4,7 +4,7 @@ This is a simple product management application. The frontend is written in Java
 
 ## Quick Start
 
-1. Clone the repository
+**1. Clone the repository**
 
 ```bash
 
@@ -12,7 +12,7 @@ git clone https://github.com/rwardman/product-management.git
 
 ```
 
-2. Run the backend
+**2. Run the backend**
 
 ```bash
 
@@ -23,7 +23,7 @@ mvn spring-boot:run
 
 It should be running at [http://localhost:8080](http://localhost:8080).
 
-3. Run the UI
+**3. Run the UI**
 
 ```bash
 
@@ -41,13 +41,13 @@ Open [http://localhost:3000](http://localhost:3000) to view the application.
 
 ## Application Functionality
 
-- ** Pulls a set of products from a persistence layer **
+- **Pulls a set of products from a persistence layer**
   - Products and categories are pulled from CSVs
-- ** List the above products in a UI **
+- **List the above products in a UI**
   - The products are listed in a responsive, mobile first layout.
-- ** Sort the products by Name, Size, and Cateogry in the UI **
+- **Sort the products by Name, Size, and Cateogry in the UI**
   - Ability to sort by Id, Name (Ascending), Name (Descending), and Size. And can filter by the Category, whilst maintaining the chosen sort.
-- ** Keep the products persisted even after the application has shut down **
+- **Keep the products persisted even after the application has shut down**
   - localStorage in the UI maintains the state after the application has shutdown.
 
 ## Backend
