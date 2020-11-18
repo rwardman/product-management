@@ -10,16 +10,14 @@ const SortBy = ({ options, sortBy, chosenOption }) => {
     sortBy(value);
   }, [sortBy, value]);
 
-  const handleChange = (e) => {
-    const option = e.target.value;
-    setValue(option);
-  };
-
   return (
     <Styled.Form>
       <label>
         Sort By:
-        <Styled.Select value={chosenOption} onChange={(e) => handleChange(e)}>
+        <Styled.Select
+          value={chosenOption}
+          onChange={(e) => setValue(e.target.value)}
+        >
           {options.map((option) => (
             <option value={option} key={option}>
               {option}
