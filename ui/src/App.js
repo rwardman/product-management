@@ -7,18 +7,26 @@ import SortBy from "./components/SortBy/SortBy";
 import FilterPanel from "./components/FilterPanel/FilterPanel";
 import NoResults from "./components/NoResults/NoResults";
 
-import { sortByString, sortByNumber, sortBySize } from "./helpers/sort";
+import { sortData } from "./helpers/sort";
 
 import * as Styled from "./App.styles";
 
 function App() {
   const [productData, setProductData] = useState(null);
   const [filteredProductData, setFilteredProductData] = useState([]);
+
   const [categories, setCategories] = useState(null);
+
   const [chosenOption, setChosenOption] = useState("Id");
   const [activeFilters, setActiveFilters] = useState([]);
 
-  const sortByOptions = ["Id", "Name (Ascending)", "Name (Descending)", "Size"];
+  const sortByOptions = [
+    "Id (Ascending)",
+    "Id (Descending)",
+    "Name (Ascending)",
+    "Name (Descending)",
+    "Size",
+  ];
 
   useEffect(() => {
     if (productData === null && categories === null) {
@@ -29,73 +37,34 @@ function App() {
         })
       );
     }
-  }, [productData, categories]);
+  });
 
   useEffect(() => {
-    const sortArray = (option) => {
-      if (productData !== null) {
-        switch (option) {
-          case "Id":
-            setProductData([...productData].sort(sortByNumber("id")));
-            break;
+    if (productData != null) {
+      const sortedData = sortData([...productData], chosenOption);
 
-          case "Name (Ascending)":
-            setProductData([...productData].sort(sortByString("name")));
-            break;
-
-          case "Name (Descending)":
-            setProductData([...productData].sort(sortByString("name", "desc")));
-            break;
-
-          case "Size":
-            var productsWithSize = [...productData].filter((product) =>
-              product.name.match(/(\d+)/g)
-            );
-            productsWithSize.sort(sortBySize("name"));
-
-            var productsWithoutSize = [...productData]
-              .filter((product) => !product.name.match(/(\d+)/g))
-              .sort(sortByString("name"));
-            setProductData(productsWithSize.concat(productsWithoutSize));
-            break;
-
-          default:
-            break;
-        }
-      }
-    };
-
-    sortArray(chosenOption);
-  }, [chosenOption]);
-
-  useEffect(() => {
-    const getData = () => {
-      if (productData !== null) {
-        const data = [...productData];
-        const result = data.filter(({ categoryId }) =>
+      if (activeFilters.length === 0) {
+        setFilteredProductData(sortedData);
+      } else {
+        const filteredData = sortedData.filter(({ categoryId }) =>
           activeFilters.includes(categoryId)
         );
-        if (result.length === 0 && activeFilters.length === 0) {
-          setFilteredProductData(data);
-        } else {
-          setFilteredProductData(result);
-        }
+        setFilteredProductData(filteredData);
       }
-    };
-    getData();
-  }, [activeFilters, productData]);
+    }
+  }, [activeFilters, chosenOption, productData]);
 
   const getCategoryName = (categoryId) => {
     const result = categories.find(({ id }) => id === categoryId);
     return result.name;
   };
 
-  const sortBy = (option) => {
-    setChosenOption(option);
-  };
-
   const filterOn = (activeFilters) => {
     setActiveFilters(activeFilters);
+  };
+
+  const sortBy = (chosenOption) => {
+    setChosenOption(chosenOption);
   };
 
   return (
