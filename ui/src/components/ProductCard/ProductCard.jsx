@@ -14,7 +14,7 @@ const ProductCard = ({
 }) => {
   return (
     <Styled.Container>
-      <Styled.TopContainer>
+      <Styled.TopContainer category={category}>
         <Styled.Title>{name}</Styled.Title>
         <div>
           <Styled.SubTitle> Id: </Styled.SubTitle>
