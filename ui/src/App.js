@@ -12,13 +12,27 @@ import { sortData } from "./helpers/sort";
 import * as Styled from "./App.styles";
 
 function App() {
-  const [productData, setProductData] = useState(null);
+  const [productData, setProductData] = useState(() =>
+    JSON.parse(localStorage.getItem("product_data"))
+  );
   const [filteredProductData, setFilteredProductData] = useState([]);
 
-  const [categories, setCategories] = useState(null);
+  const [categories, setCategories] = useState(() =>
+    JSON.parse(localStorage.getItem("categories"))
+  );
 
-  const [chosenOption, setChosenOption] = useState("Id");
-  const [activeFilters, setActiveFilters] = useState([]);
+  const [chosenOption, setChosenOption] = useState(() => {
+    const option = JSON.parse(localStorage.getItem("chosen_option"))
+      ? JSON.parse(localStorage.getItem("chosen_option"))
+      : "Id (Ascending)";
+    return option;
+  });
+  const [activeFilters, setActiveFilters] = useState(() => {
+    const option = JSON.parse(localStorage.getItem("active_filters"))
+      ? JSON.parse(localStorage.getItem("active_filters"))
+      : [];
+    return option;
+  });
 
   const sortByOptions = [
     "Id (Ascending)",
@@ -29,6 +43,7 @@ function App() {
   ];
 
   useEffect(() => {
+    console.log("rendre");
     if (productData === null && categories === null) {
       axios.all([axios.get("/products"), axios.get("/categories")]).then(
         axios.spread((...responses) => {
@@ -37,9 +52,15 @@ function App() {
         })
       );
     }
-  });
+
+    localStorage.setItem("categories", JSON.stringify(categories));
+    localStorage.setItem("product_data", JSON.stringify(productData));
+  }, [productData, categories]);
 
   useEffect(() => {
+    localStorage.setItem("chosen_option", JSON.stringify(chosenOption));
+    localStorage.setItem("active_filters", JSON.stringify(activeFilters));
+
     if (productData != null) {
       const sortedData = sortData([...productData], chosenOption);
 
@@ -74,8 +95,16 @@ function App() {
         <Styled.SortByContainer>
           {categories && (
             <>
-              <FilterPanel categories={categories} filterOn={filterOn} />
-              <SortBy options={sortByOptions} sortBy={sortBy} />
+              <FilterPanel
+                categories={categories}
+                filterOn={filterOn}
+                activeFilters={activeFilters}
+              />
+              <SortBy
+                options={sortByOptions}
+                sortBy={sortBy}
+                chosenOption={chosenOption}
+              />
             </>
           )}
         </Styled.SortByContainer>
