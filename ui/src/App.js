@@ -43,7 +43,6 @@ function App() {
   ];
 
   useEffect(() => {
-    console.log("rendre");
     if (productData === null && categories === null) {
       axios.all([axios.get("/products"), axios.get("/categories")]).then(
         axios.spread((...responses) => {
