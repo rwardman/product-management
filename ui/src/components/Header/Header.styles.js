@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Container = styled.div`
   display: flex;
   margin: 20px;
-  /* margin: 25px 50px 25px 50px; */
+  border-bottom: 1px solid #d8d8d8;
 `;
 
 const LogoContainer = styled.div`
