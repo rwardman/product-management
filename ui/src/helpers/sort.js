@@ -13,11 +13,13 @@ export const sortData = (data, chosenOption) => {
       return data.sort(sortByString("name", "desc"));
 
     case "Size":
+      //Products with a number are assumed to have a size
       var productsWithSize = data.filter((product) =>
         product.name.match(/(\d+)/g)
       );
       productsWithSize.sort(sortBySize("name"));
 
+      // Products without size are sorted alphabetically
       var productsWithoutSize = data
         .filter((product) => !product.name.match(/(\d+)/g))
         .sort(sortByString("name"));

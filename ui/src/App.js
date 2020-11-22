@@ -28,10 +28,10 @@ function App() {
     return option;
   });
   const [activeFilters, setActiveFilters] = useState(() => {
-    const option = JSON.parse(localStorage.getItem("active_filters"))
+    const filters = JSON.parse(localStorage.getItem("active_filters"))
       ? JSON.parse(localStorage.getItem("active_filters"))
       : [];
-    return option;
+    return filters;
   });
 
   const sortByOptions = [
