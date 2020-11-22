@@ -1,6 +1,7 @@
 # Product Management
 
-This is a simple product management application. The frontend is written in Javascript, using the React Library. The backend services are written in Java. Both must be running for the application to run successfully.
+This is a simple product management application. The frontend is written in Javascript, using the React Library. The backend services are written in Java, using Spring Boot.
+Both must be running for the application to run successfully.
 
 ## Quick Start
 
@@ -56,7 +57,7 @@ docker-compose up --build
 - **Pulls a set of products from a persistence layer**
 
   - Products and categories are pulled from CSVs.
-  - The data is accessible via two services, a categories and products service.
+  - The data is accessible via two services: CategoryService and ProductService.
 
 - **List the above products in a UI**
 
@@ -73,7 +74,7 @@ docker-compose up --build
 
 ## Backend
 
-The backend is written in Java, using Spring Boot using the MVC design pattern and using Maven. There are corresponding tests for each of the services and controllers, with a high level of test coverage.
+The backend is written in Java, using Spring Boot using the MVC design pattern and using Maven. There are corresponding tests for each of the services and controllers.
 
 ### Improvements
 
