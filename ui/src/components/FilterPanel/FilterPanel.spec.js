@@ -6,10 +6,18 @@ const categories = [
   { id: "id2", name: "name2" },
 ];
 
+const activeFilters = ["3"];
+
 describe("When displaying the filter panel component", () => {
   it("should be displayed correctly", () => {
     const tree = renderer
-      .create(<FilterPanel categories={categories} filterOn={jest.fn()} />)
+      .create(
+        <FilterPanel
+          categories={categories}
+          filterOn={jest.fn()}
+          activeFilters={activeFilters}
+        />
+      )
       .toJSON();
     expect(tree).toMatchSnapshot();
   });

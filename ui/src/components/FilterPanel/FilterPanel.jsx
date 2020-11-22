@@ -3,20 +3,20 @@ import PropTypes from "prop-types";
 
 import * as Styled from "./FilterPanel.styles";
 
-const FilterPanel = ({ categories, filterOn }) => {
-  const [activeFilters, setActiveFilters] = useState([]);
+const FilterPanel = ({ categories, filterOn, activeFilters }) => {
+  const [filters, setFilters] = useState(activeFilters);
 
   useEffect(() => {
-    filterOn(activeFilters);
-  }, [filterOn, activeFilters]);
+    filterOn(filters);
+  }, [filterOn, filters]);
 
   const handleChange = (id) => {
-    var list = [...activeFilters];
+    var list = [...filters];
     if (!list.includes(id)) {
       list.push(id);
-      setActiveFilters(list);
+      setFilters(list);
     } else {
-      setActiveFilters([...activeFilters].filter((word) => word !== id));
+      setFilters([...filters].filter((filter) => filter !== id));
     }
   };
 
@@ -29,6 +29,7 @@ const FilterPanel = ({ categories, filterOn }) => {
             {category.name}
             <input
               name={category.name}
+              defaultChecked={filters.includes(category.id)}
               type="checkbox"
               onClick={() => handleChange(category.id)}
             />
@@ -43,6 +44,7 @@ export default FilterPanel;
 
 FilterPanel.propTypes = {
   filterOn: PropTypes.func.isRequired,
+  activeFilters: PropTypes.arrayOf(PropTypes.string).isRequired,
   categories: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
