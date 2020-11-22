@@ -57,7 +57,7 @@ docker-compose up --build
 - **Pulls a set of products from a persistence layer**
 
   - Products and categories are pulled from CSVs.
-  - The data is accessible via two services: categories and products.
+  - The data is accessible via two services: CategoryService and ProductService.
 
 - **List the above products in a UI**
 
