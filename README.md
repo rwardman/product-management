@@ -55,12 +55,12 @@ Open [http://localhost:3000](http://localhost:3000) to view the application.
 
 ## Backend
 
-The backend is written in Java, using Spring Boot using the Model View Controller design pattern and using Maven. There are corresponding tests for each of the services and controllers, with a high level of test coverage.
+The backend is written in Java, using Spring Boot using the MVC design pattern and using Maven. There are corresponding tests for each of the services and controllers, with a high level of test coverage.
 
 ### Improvements
 
-- Add new functionality such as a search service
-- Functionality to modify and delete data, using POST, PUT and DELETE methods
+- Add new functionality such as a search service.
+- Functionality to modify and delete data.
 
 ## Data
 
@@ -68,7 +68,7 @@ The data for this application is loaded from two CSV files, using a `@PostConstr
 
 ### Improvements
 
-- The data source should be replaced with a database.
+- The data source should be replaced with a database, such as Postgres.
 
 ## Frontend
 
@@ -77,9 +77,7 @@ The frontend is written in JavaScript using the React Library. The frontend uses
 ### Improvements
 
 - A greater focus on accessibility
-- New features: Search, display a single product, and allow editing
-- Routing
-- Improved state management, such as React Context
+- New features. Possibilities include search, display a single product, and allow editing
 
 ### The Design
 
