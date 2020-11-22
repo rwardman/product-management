@@ -4,10 +4,12 @@ import com.productmanagement.backend.models.ProductResponse;
 import com.productmanagement.backend.models.ProductsResponse;
 import com.productmanagement.backend.services.ProductService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin
 @RestController
 public class ProductController {
 

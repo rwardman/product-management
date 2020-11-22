@@ -35,6 +35,14 @@ Open [http://localhost:3000](http://localhost:3000) to view the application.
 - Ensure you have yarn installed
 - Ensure the Java version is 11
 
+## Running the application using Docker
+
+To run the application using docker, from the main application directory simply run
+
+```bash
+docker-compose up
+```
+
 ## Application Functionality
 
 - **Pulls a set of products from a persistence layer**
