@@ -44,12 +44,17 @@ function App() {
 
   useEffect(() => {
     if (productData === null && categories === null) {
-      axios.all([axios.get("/products"), axios.get("/categories")]).then(
-        axios.spread((...responses) => {
-          setProductData(responses[0].data.data);
-          setCategories(responses[1].data.data);
-        })
-      );
+      axios
+        .all([
+          axios.get("http://localhost:8080/products"),
+          axios.get("http://localhost:8080/categories"),
+        ])
+        .then(
+          axios.spread((...responses) => {
+            setProductData(responses[0].data.data);
+            setCategories(responses[1].data.data);
+          })
+        );
     }
 
     localStorage.setItem("categories", JSON.stringify(categories));
@@ -75,6 +80,9 @@ function App() {
   }, [activeFilters, chosenOption, productData]);
 
   const getCategoryName = (categoryId) => {
+    if (categories === null) {
+      return "Category";
+    }
     const result = categories.find(({ id }) => id === categoryId);
     return result.name;
   };

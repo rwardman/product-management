@@ -35,11 +35,28 @@ Open [http://localhost:3000](http://localhost:3000) to view the application.
 - Ensure you have yarn installed
 - Ensure the Java version is 11
 
+## Running the application using Docker
+
+To run the application using docker, from the main application directory simply run
+
+```bash
+docker-compose up
+```
+
+Open [http://localhost:3000](http://localhost:3000) to view the application.
+
+To force a rebuild, run
+
+```bash
+docker-compose up --build
+```
+
 ## Application Functionality
 
 - **Pulls a set of products from a persistence layer**
 
-  - Products and categories are pulled from CSVs
+  - Products and categories are pulled from CSVs.
+  - The data is accessible via two services, a categories and products service.
 
 - **List the above products in a UI**
 
@@ -52,6 +69,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the application.
 
 - **Keep the products persisted even after the application has shut down**
   - localStorage in the UI maintains the state after the application has shutdown.
+  - Chosen sort/filter is also maintained
 
 ## Backend
 
