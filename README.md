@@ -48,7 +48,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the application.
 To force a rebuild, run
 
 ```bash
-docker-compose up build
+docker-compose up --build
 ```
 
 ## Application Functionality
